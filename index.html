@@ -296,11 +296,15 @@
     var tg = document.querySelector('.temp-ghost');
     var tr = document.querySelector('.temp-real');
     var wd = document.querySelector('.w-desc');
-    var wm = document.querySelector('.w-meta');
+    // Recolor every weather metadata block, including the forecast panel.
+    var wms = document.querySelectorAll('.w-meta');
     if (tg) tg.style.color = c.segOff;
     if (tr) { tr.style.color = c.segOn; tr.style.textShadow = '0 0 12px '+c.glow; }
     if (wd) wd.style.color = c.segDim;
-    if (wm) { wm.style.color = c.label; colorBolds(wm, c.segOn); }
+    for (var i = 0; i < wms.length; i++) {
+      wms[i].style.color = c.label;
+      colorBolds(wms[i], c.segOn);
+    }
     var msg = document.getElementById('w-msg');
     if (msg) msg.style.color = c.segDim;
   }
