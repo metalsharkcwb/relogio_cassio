@@ -403,8 +403,9 @@
           var data=JSON.parse(xhr.responseText);
           todayISO=data.today||'';
           if(!data.events||data.events.length===0){
-            list.innerHTML='<div class="msg" style="color:'+c.segDim+'">NO EVENTS_</div>';return;
-          }
+  list.innerHTML='';
+  return;
+}
           var html='';
           for(var i=0;i<data.events.length;i++){
             var ev=data.events[i];
