@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -14,7 +15,6 @@
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <!-- Estilos de tema inyectados por JS -->
   <style id="theme-style"></style>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
@@ -24,7 +24,7 @@
       display:-webkit-flex; display:flex;
       -webkit-align-items:center; align-items:center;
       -webkit-justify-content:center; justify-content:center;
-      font-family: 'Share Tech Mono','Courier New',monospace;
+      font-family:'Share Tech Mono','Courier New',monospace;
     }
 
     .watch {
@@ -42,7 +42,6 @@
       pointer-events:none; z-index:1;
     }
 
-    /* HEADER */
     .header {
       display:-webkit-flex; display:flex;
       -webkit-flex-direction:row; flex-direction:row;
@@ -52,8 +51,10 @@
       border-bottom-width:1px; border-bottom-style:solid;
       position:relative; z-index:2;
     }
+
     .h-label { font-size:1vw; letter-spacing:0.22em; text-transform:uppercase; }
     .modes { display:-webkit-flex; display:flex; gap:0.6vw; }
+
     .mode-btn {
       font-family:'Share Tech Mono','Courier New',monospace;
       font-size:0.85vw; letter-spacing:0.15em; cursor:pointer;
@@ -62,7 +63,6 @@
       -webkit-user-select:none; user-select:none;
     }
 
-    /* HORA */
     .time-block {
       display:-webkit-flex; display:flex;
       -webkit-flex-direction:column; flex-direction:column;
@@ -74,39 +74,45 @@
     }
 
     .lcd-wrap { position:relative; display:inline-block; line-height:1; }
+
     .lcd-ghost {
       font-family:'DSEG7','Courier New',monospace;
       font-size:20vw; letter-spacing:0.04em;
       position:absolute; top:0; left:0; pointer-events:none;
     }
+
     .lcd-real {
       font-family:'DSEG7','Courier New',monospace;
       font-size:20vw; letter-spacing:0.04em; position:relative;
     }
+
     .sep-blink {
       -webkit-animation:blink 1s step-end infinite;
       animation:blink 1s step-end infinite;
     }
+
     @-webkit-keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.06} }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.06} }
 
     .date-row { display:-webkit-flex; display:flex; gap:4vw; margin-top:5vh; }
     .date-chip { font-size:3vw; letter-spacing:0.22em; text-transform:uppercase; }
 
-    /* DOS COLUMNAS */
     .bottom {
       display:-webkit-flex; display:flex;
       -webkit-flex-direction:row; flex-direction:row;
       -webkit-flex:1; flex:1;
       position:relative; z-index:2; min-height:0;
     }
+
     .panel {
       -webkit-flex:1; flex:1;
       display:-webkit-flex; display:flex;
       -webkit-flex-direction:column; flex-direction:column;
       padding:1.5vh 2.5vw; overflow:hidden;
     }
+
     .panel-left { border-right-width:1px; border-right-style:solid; }
+
     .panel-label {
       font-size:0.9vw; letter-spacing:0.3em; text-transform:uppercase;
       margin-bottom:1vh;
@@ -114,45 +120,51 @@
       padding-bottom:0.5vh;
     }
 
-    /* CLIMA */
     .temp-wrap { position:relative; display:inline-block; line-height:1; }
+
     .temp-ghost {
       font-family:'DSEG7','Courier New',monospace;
       font-size:9vw; letter-spacing:0.04em;
       position:absolute; top:0; left:0;
     }
+
     .temp-real {
       font-family:'DSEG7','Courier New',monospace;
       font-size:9vw; letter-spacing:0.04em; position:relative;
     }
-    .temp-real sup { font-size:2.5vw; vertical-align:super; opacity:0.75; font-family:'Share Tech Mono','Courier New',monospace; }
-    .w-desc { margin-top:0.8vh; font-size:1.05vw; letter-spacing:0.1em; text-transform:uppercase; }
-    .w-meta { margin-top:0.6vh; font-size:1.05vw; line-height:1.9; }
 
-    /* AGENDA */
+    .temp-real sup {
+      font-size:2.5vw; vertical-align:super; opacity:0.75;
+      font-family:'Share Tech Mono','Courier New',monospace;
+    }
+
+    /* Informações abaixo da temperatura ampliadas */
+    .w-desc {
+      margin-top:0.8vh; font-size:3.15vw;
+      letter-spacing:0.1em; text-transform:uppercase;
+    }
+
+    .w-meta {
+      margin-top:0.6vh; font-size:3.15vw; line-height:1.5;
+    }
+
+    /* Previsão à direita: texto ampliado */
+    #agenda-list .w-meta {
+      font-size:3.15vw;
+      line-height:1.5;
+      margin-top:1.2vh;
+      letter-spacing:0.02em;
+    }
+
     .ev-list {
       display:-webkit-flex; display:flex;
       -webkit-flex-direction:column; flex-direction:column;
       gap:0.55vh; overflow:hidden;
     }
-    .ev {
-      display:-webkit-flex; display:flex;
-      -webkit-flex-direction:column; flex-direction:column;
-      gap:0.2vh; padding:0.5vh 0.8vw;
-      border-width:1px; border-style:solid;
-      background:rgba(0,0,0,0.2);
+
+    .msg {
+      font-size:1.1vw; letter-spacing:0.1em; text-transform:uppercase;
     }
-    .ev-meta {
-      display:-webkit-flex; display:flex;
-      -webkit-flex-direction:row; flex-direction:row;
-      -webkit-align-items:center; align-items:center;
-      gap:0.8vw;
-    }
-    .ev-date { font-size:0.9vw; -webkit-flex-shrink:0; flex-shrink:0; min-width:4.5vw; letter-spacing:0.05em; }
-    .ev-time { font-size:0.9vw; -webkit-flex-shrink:0; flex-shrink:0; letter-spacing:0.04em; }
-    .ev-cal  { font-size:0.8vw; letter-spacing:0.06em; margin-left:auto; -webkit-flex-shrink:0; flex-shrink:0; }
-    .ev-title { font-size:1.15vw; letter-spacing:0.04em; white-space:normal; word-break:break-word; line-height:1.3; }
-    .msg { font-size:1.1vw; letter-spacing:0.1em; text-transform:uppercase; }
   </style>
 </head>
 <body>
@@ -164,15 +176,15 @@
     <span class="h-label" id="seconds">--</span>
     <div class="modes">
       <button class="mode-btn" id="btn-green" onclick="setTheme('green')">GRN</button>
-      <button class="mode-btn" id="btn-blue"  onclick="setTheme('blue')">BLU</button>
-      <button class="mode-btn" id="btn-mono"  onclick="setTheme('mono')">B&amp;W</button>
+      <button class="mode-btn" id="btn-blue" onclick="setTheme('blue')">BLU</button>
+      <button class="mode-btn" id="btn-mono" onclick="setTheme('mono')">B&amp;W</button>
     </div>
   </div>
 
   <div class="time-block" id="time-block">
     <div class="lcd-wrap">
       <div class="lcd-ghost" id="clock-ghost">88<span>:</span>88</div>
-      <div class="lcd-real"  id="clock-real">00<span class="sep-blink">:</span>00</div>
+      <div class="lcd-real" id="clock-real">00<span class="sep-blink">:</span>00</div>
     </div>
     <div class="date-row">
       <div class="date-chip" id="date-day">DOM</div>
@@ -182,270 +194,226 @@
 
   <div class="bottom">
     <div class="panel panel-left" id="panel-left">
-      <div class="panel-label" id="panel-label-left">&#9650; CLIMA / CURITIBA </div>
-      <div id="weather-section"><div class="msg" id="w-msg">LOADING_</div></div>
+      <div class="panel-label" id="panel-label-left">&#9650; CLIMA / CURITIBA</div>
+      <div id="weather-section"><div class="msg" id="w-msg">CARREGANDO_</div></div>
     </div>
+
     <div class="panel" id="panel-right">
       <div class="panel-label" id="panel-label-right">&#9632; PREVISÃO — CURITIBA</div>
-<div class="ev-list" id="agenda-list"></div>
+      <div class="ev-list" id="agenda-list"></div>
+    </div>
   </div>
- 
+</div>
+
 <script>
   var LAT=-25.4284, LON=-49.2733;
-  var DIAS =['DOM','SEG','TER','QUA','QUI','SEX','SÁB'];
+  var DIAS=['DOM','SEG','TER','QUA','QUI','SEX','SÁB'];
   var MESES=['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'];
-  var WMO={0:'CÉU LIMPO',1:'PREDOM. LIMPO',2:'PARC. NUBLADO',3:'NUBLADO',
-    45:'NEBLINA',48:'NEVOEIRO GELADO',51:'GAROA',53:'GAROA MODERADA',55:'GAROA FORTE',
-    61:'CHUVA FRACA',63:'CHUVA MODERADA',65:'CHUVA FORTE',71:'NEVE FRACA',73:'NEVE',75:'NEVE FORTE',
-    80:'PANCADAS',81:'PANCADAS MODERADAS',82:'PANCADAS FORTES',85:'NEVE',
-    95:'TEMPESTADE',96:'TEMPESTADE COM GRANIZO',99:'GRANIZO FORTE'};
 
-  // ── TEMAS (colores directos, sin CSS variables) ────────────
+  var WMO={
+    0:'CÉU LIMPO',1:'PREDOM. LIMPO',2:'PARC. NUBLADO',3:'NUBLADO',
+    45:'NEBLINA',48:'NEVOEIRO GELADO',51:'GAROA',53:'GAROA MODERADA',
+    55:'GAROA FORTE',61:'CHUVA FRACA',63:'CHUVA MODERADA',65:'CHUVA FORTE',
+    71:'NEVE FRACA',73:'NEVE',75:'NEVE FORTE',80:'PANCADAS',
+    81:'PANCADAS MODERADAS',82:'PANCADAS FORTES',85:'NEVE',
+    95:'TEMPESTADE',96:'TEMPESTADE COM GRANIZO',99:'GRANIZO FORTE'
+  };
+
   var THEMES = {
     green: {
-      bodyBg:    '#0A0A08',
-      screenBg:  '#141F0C',
-      segOn:     '#B8D870',
-      segOff:    '#1E2E10',
-      segDim:    '#4A6228',
-      border:    '#3A5220',
-      label:     '#527030',
-      glow:      'rgba(168,210,80,0.35)',
-      scanline:  'rgba(0,0,0,0.22)'
+      bodyBg:'#0A0A08', screenBg:'#141F0C', segOn:'#B8D870',
+      segOff:'#1E2E10', segDim:'#4A6228', border:'#3A5220',
+      label:'#527030', glow:'rgba(168,210,80,0.35)',
+      scanline:'rgba(0,0,0,0.22)'
     },
     blue: {
-      bodyBg:    '#05080F',
-      screenBg:  '#0A1020',
-      segOn:     '#70B8FF',
-      segOff:    '#0E1E32',
-      segDim:    '#204060',
-      border:    '#1A4070',
-      label:     '#2A5080',
-      glow:      'rgba(80,160,255,0.35)',
-      scanline:  'rgba(0,0,0,0.22)'
+      bodyBg:'#05080F', screenBg:'#0A1020', segOn:'#70B8FF',
+      segOff:'#0E1E32', segDim:'#204060', border:'#1A4070',
+      label:'#2A5080', glow:'rgba(80,160,255,0.35)',
+      scanline:'rgba(0,0,0,0.22)'
     },
     mono: {
-      bodyBg:    '#050505',
-      screenBg:  '#0F0F0F',
-      segOn:     '#DEDEDE',
-      segOff:    '#1C1C1C',
-      segDim:    '#4A4A4A',
-      border:    '#333333',
-      label:     '#444444',
-      glow:      'rgba(210,210,210,0.2)',
-      scanline:  'rgba(0,0,0,0.28)'
+      bodyBg:'#050505', screenBg:'#0F0F0F', segOn:'#DEDEDE',
+      segOff:'#1C1C1C', segDim:'#4A4A4A', border:'#333333',
+      label:'#777777', glow:'rgba(210,210,210,0.2)',
+      scanline:'rgba(0,0,0,0.28)'
     }
   };
 
-  function applyTheme(t) {
-    var c = THEMES[t];
-    // Body
-    document.body.style.backgroundColor = c.bodyBg;
-    // Watch
-    var w = document.getElementById('watch');
-    w.style.backgroundColor = c.screenBg;
-    w.style.borderColor = c.border;
-    w.style.backgroundImage = 'repeating-linear-gradient(0deg,'+c.scanline+' 0px,'+c.scanline+' 1px,transparent 1px,transparent 3px)';
-    // Inner border
-    document.getElementById('watch-inner').style.borderColor = c.segOff;
-    // Header
-    var header = document.getElementById('header');
-    header.style.borderBottomColor = c.segOff;
-    colorEls('h-label', c.label);
-    // Mode buttons
-    var btnIds = ['green','blue','mono'];
-    for (var i=0;i<btnIds.length;i++) {
-      var btn = document.getElementById('btn-'+btnIds[i]);
-      if (btn) {
-        btn.style.color = btnIds[i]===t ? c.segOn : c.segDim;
-        btn.style.borderColor = btnIds[i]===t ? c.segDim : c.segOff;
-      }
-    }
-    // Time block
-    document.getElementById('time-block').style.borderBottomColor = c.segOff;
-    // Clock ghost/real
-    document.getElementById('clock-ghost').style.color = c.segOff;
-    var cr = document.getElementById('clock-real');
-    cr.style.color = c.segOn;
-    cr.style.textShadow = '0 0 16px '+c.glow+', 0 0 40px '+c.glow;
-    // Date chips
-    colorEls('date-chip', c.segDim);
-    var df = document.getElementById('date-full');
-    if (df) df.style.color = c.segOn;
-    // Panels
-    document.getElementById('panel-left').style.borderRightColor = c.segOff;
-    colorEls('panel-label', c.label);
-    document.getElementById('panel-label-left').style.borderBottomColor = c.segOff;
-    document.getElementById('panel-label-right').style.borderBottomColor = c.segOff;
-    // Weather
-    applyWeatherColors(c);
-    // Agenda
-    applyAgendaColors(c);
-    // Store
-    window._theme = t;
-    window._colors = c;
-    localStorage.setItem('casio-theme', t);
+  function colorEls(cls,color) {
+    var els=document.getElementsByClassName(cls);
+    for(var i=0;i<els.length;i++) els[i].style.color=color;
   }
 
-  function colorEls(cls, color) {
-    var els = document.getElementsByClassName(cls);
-    for (var i=0;i<els.length;i++) els[i].style.color = color;
+  function colorBolds(el,color) {
+    var bs=el.getElementsByTagName('b');
+    for(var i=0;i<bs.length;i++) bs[i].style.color=color;
   }
 
   function applyWeatherColors(c) {
-    var tg = document.querySelector('.temp-ghost');
-    var tr = document.querySelector('.temp-real');
-    var wd = document.querySelector('.w-desc');
-    // Recolor every weather metadata block, including the forecast panel.
-    var wms = document.querySelectorAll('.w-meta');
-    if (tg) tg.style.color = c.segOff;
-    if (tr) { tr.style.color = c.segOn; tr.style.textShadow = '0 0 12px '+c.glow; }
-    if (wd) wd.style.color = c.segDim;
-    for (var i = 0; i < wms.length; i++) {
-      wms[i].style.color = c.label;
-      colorBolds(wms[i], c.segOn);
+    var tg=document.querySelector('.temp-ghost');
+    var tr=document.querySelector('.temp-real');
+    var wd=document.querySelector('.w-desc');
+    var wms=document.querySelectorAll('.w-meta');
+
+    if(tg) tg.style.color=c.segOff;
+    if(tr) {
+      tr.style.color=c.segOn;
+      tr.style.textShadow='0 0 12px '+c.glow;
     }
-    var msg = document.getElementById('w-msg');
-    if (msg) msg.style.color = c.segDim;
+    if(wd) wd.style.color=c.segDim;
+
+    for(var i=0;i<wms.length;i++) {
+      wms[i].style.color=c.label;
+      colorBolds(wms[i],c.segOn);
+    }
+
+    var msg=document.getElementById('w-msg');
+    if(msg) msg.style.color=c.segDim;
   }
 
-  function applyAgendaColors(c) {
-    var evs = document.getElementsByClassName('ev');
-    for (var i=0;i<evs.length;i++) evs[i].style.borderColor = c.segOff;
-    colorEls('ev-date', c.segDim);
-    var todays = document.getElementsByClassName('ev-date today');
-    for (var i=0;i<todays.length;i++) todays[i].style.color = c.segOn;
-    colorEls('ev-time', c.label);
-    colorEls('ev-title', c.segOn);
-    colorEls('ev-cal', c.label);
-    colorEls('msg', c.segDim);
+  function applyTheme(t) {
+    var c=THEMES[t] || THEMES.green;
+
+    document.body.style.backgroundColor=c.bodyBg;
+
+    var w=document.getElementById('watch');
+    w.style.backgroundColor=c.screenBg;
+    w.style.borderColor=c.border;
+    w.style.backgroundImage='repeating-linear-gradient(0deg,'+
+      c.scanline+' 0px,'+c.scanline+' 1px,transparent 1px,transparent 3px)';
+
+    document.getElementById('watch-inner').style.borderColor=c.segOff;
+
+    var header=document.getElementById('header');
+    header.style.borderBottomColor=c.segOff;
+    colorEls('h-label',c.label);
+
+    var btnIds=['green','blue','mono'];
+    for(var i=0;i<btnIds.length;i++) {
+      var btn=document.getElementById('btn-'+btnIds[i]);
+      if(btn) {
+        btn.style.color=btnIds[i]===t?c.segOn:c.segDim;
+        btn.style.borderColor=btnIds[i]===t?c.segDim:c.segOff;
+      }
+    }
+
+    document.getElementById('time-block').style.borderBottomColor=c.segOff;
+    document.getElementById('clock-ghost').style.color=c.segOff;
+
+    var cr=document.getElementById('clock-real');
+    cr.style.color=c.segOn;
+    cr.style.textShadow='0 0 16px '+c.glow+', 0 0 40px '+c.glow;
+
+    colorEls('date-chip',c.segDim);
+    document.getElementById('date-full').style.color=c.segOn;
+    document.getElementById('seconds').style.color=c.label;
+
+    document.getElementById('panel-left').style.borderRightColor=c.segOff;
+    colorEls('panel-label',c.label);
+    document.getElementById('panel-label-left').style.borderBottomColor=c.segOff;
+    document.getElementById('panel-label-right').style.borderBottomColor=c.segOff;
+
+    applyWeatherColors(c);
+    window._theme=t;
+    window._colors=c;
+
+    try { localStorage.setItem('casio-theme',t); } catch(e) {}
   }
 
-  function colorBolds(el, color) {
-    var bs = el.getElementsByTagName('b');
-    for (var i=0;i<bs.length;i++) bs[i].style.color = color;
+  function setTheme(t) {
+    applyTheme(t);
+    applyWeatherColors(THEMES[t] || THEMES.green);
   }
 
-  function setTheme(t) { applyTheme(t); }
-
-  // ── RELOJ ─────────────────────────────────────────────────
-  function pad(n){ return n<10?'0'+n:''+n; }
+  function pad(n) { return n<10?'0'+n:''+n; }
 
   function updateClock() {
     var now=new Date();
-    document.getElementById('clock-real').innerHTML =
+
+    document.getElementById('clock-real').innerHTML=
       pad(now.getHours())+'<span class="sep-blink">:</span>'+pad(now.getMinutes());
-    document.getElementById('clock-ghost').innerHTML = '88<span>:</span>88';
-    document.getElementById('seconds').textContent = pad(now.getSeconds());
-    document.getElementById('date-day').textContent = DIAS[now.getDay()];
-    document.getElementById('date-full').textContent =
+
+    document.getElementById('clock-ghost').innerHTML='88<span>:</span>88';
+    document.getElementById('seconds').textContent=pad(now.getSeconds());
+    document.getElementById('date-day').textContent=DIAS[now.getDay()];
+    document.getElementById('date-full').textContent=
       pad(now.getDate())+'-'+MESES[now.getMonth()]+'-'+now.getFullYear();
-    // Re-aplicar color de fecha
-    if (window._colors) {
-      document.getElementById('date-day').style.color  = window._colors.segDim;
-      document.getElementById('date-full').style.color = window._colors.segOn;
-      document.getElementById('clock-ghost').style.color = window._colors.segOff;
-      var cr = document.getElementById('clock-real');
-      cr.style.color = window._colors.segOn;
-      cr.style.textShadow = '0 0 16px '+window._colors.glow+', 0 0 40px '+window._colors.glow;
-      document.getElementById('seconds').style.color = window._colors.label;
+
+    if(window._colors) {
+      document.getElementById('date-day').style.color=window._colors.segDim;
+      document.getElementById('date-full').style.color=window._colors.segOn;
+      document.getElementById('clock-ghost').style.color=window._colors.segOff;
+
+      var cr=document.getElementById('clock-real');
+      cr.style.color=window._colors.segOn;
+      cr.style.textShadow='0 0 16px '+window._colors.glow+', 0 0 40px '+window._colors.glow;
+      document.getElementById('seconds').style.color=window._colors.label;
     }
   }
 
-
-  // ── CLIMA ─────────────────────────────────────────────────
   function fetchWeather() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/api/weather?lat=' + LAT + '&lon=' + LON, true);
+    var xhr=new XMLHttpRequest();
+    xhr.open('GET','/api/weather?lat='+LAT+'&lon='+LON,true);
 
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState !== 4) return;
+    xhr.onreadystatechange=function() {
+      if(xhr.readyState!==4) return;
 
-      var el = document.getElementById('weather-section');
-      var c = window._colors || THEMES.green;
+      var el=document.getElementById('weather-section');
+      var c=window._colors||THEMES.green;
 
-      if (xhr.status === 200) {
+      if(xhr.status===200) {
         try {
-          var d = JSON.parse(xhr.responseText);
-          var cw = d.current || d.current_weather;
+          var d=JSON.parse(xhr.responseText);
+          var cw=d.current||d.current_weather;
+          if(!cw) throw new Error('Dados meteorológicos indisponíveis');
 
-          if (!cw) throw new Error('No current weather');
+          var temp=Math.round(cw.temperature_2m!==undefined?cw.temperature_2m:cw.temperature);
+          var sens=Math.round(cw.apparent_temperature!==undefined?cw.apparent_temperature:temp);
+          var hum=cw.relative_humidity_2m!==undefined?cw.relative_humidity_2m:'--';
+          var code=cw.weather_code!==undefined?cw.weather_code:cw.weathercode;
 
-          var temp = Math.round(cw.temperature_2m !== undefined
-            ? cw.temperature_2m : cw.temperature);
-
-          var sens = Math.round(cw.apparent_temperature !== undefined
-            ? cw.apparent_temperature : temp);
-
-          var hum = cw.relative_humidity_2m !== undefined
-            ? cw.relative_humidity_2m
-            : '--';
-
-          var wind = cw.wind_speed_10m !== undefined
-            ? Math.round(cw.wind_speed_10m)
-            : (cw.windspeed !== undefined ? Math.round(cw.windspeed) : '--');
-
-          var code = cw.weather_code !== undefined
-            ? cw.weather_code : cw.weathercode;
-
-          el.innerHTML =
-            '<div class="temp-wrap">' +
-              '<div class="temp-ghost" style="color:' + c.segOff + '">88!</div>' +
-              '<div class="temp-real" style="color:' + c.segOn +
-              ';text-shadow:0 0 12px ' + c.glow + '">' +
-              temp + '<sup>°C</sup></div>' +
-            '</div>' +
-            '<div class="w-desc" style="color:' + c.segDim + '">' +
-              (WMO[code] || '--') +
-            '</div>' +
-            '<div class="w-meta" style="color:' + c.label + '">' +
-              'SENSAÇÃO <b style="color:' + c.segOn + '">' + sens + '°</b> ' +
-              '&nbsp; UMID. <b style="color:' + c.segOn + '">' + hum + '%</b><br>' +
-              'VENTO <b style="color:' + c.segOn + '">' + wind + ' KM/H</b>' +
+          el.innerHTML=
+            '<div class="temp-wrap">'+
+              '<div class="temp-ghost" style="color:'+c.segOff+'">88!</div>'+
+              '<div class="temp-real" style="color:'+c.segOn+';text-shadow:0 0 12px '+c.glow+'">'+temp+'<sup>°C</sup></div>'+
+            '</div>'+
+            '<div class="w-desc" style="color:'+c.segDim+'">'+(WMO[code]||'--')+'</div>'+
+            '<div class="w-meta" style="color:'+c.label+'">'+
+              'SENSAÇÃO <b style="color:'+c.segOn+'">'+sens+'°</b> '+
+              '&nbsp; UMID. <b style="color:'+c.segOn+'">'+hum+'%</b>'+
             '</div>';
 
-          // ── PREVISÃO DO DIA NO PAINEL DIREITO ──
-          var agenda = document.getElementById('agenda-list');
+          var forecast=document.getElementById('agenda-list');
 
-          if (agenda && d.daily) {
-            var max = d.daily.temperature_2m_max &&
-              d.daily.temperature_2m_max[0];
-            var min = d.daily.temperature_2m_min &&
-              d.daily.temperature_2m_min[0];
-            var rain = d.daily.precipitation_probability_max &&
-              d.daily.precipitation_probability_max[0];
+          if(forecast && d.daily) {
+            var max=d.daily.temperature_2m_max && d.daily.temperature_2m_max[0];
+            var min=d.daily.temperature_2m_min && d.daily.temperature_2m_min[0];
+            var rain=d.daily.precipitation_probability_max && d.daily.precipitation_probability_max[0];
 
-            agenda.innerHTML =
-              '<div class="w-meta" style="color:' + c.label + '">' +
-                'SENSAÇÃO TÉRMICA <b style="color:' + c.segOn + '">' +
-                sens + '°C</b><br>' +
-                'MÁXIMA <b style="color:' + c.segOn + '">' +
-                (max !== undefined ? Math.round(max) + '°C' : '--') + '</b><br>' +
-                'MÍNIMA <b style="color:' + c.segOn + '">' +
-                (min !== undefined ? Math.round(min) + '°C' : '--') + '</b><br>' +
-                'CHUVA <b style="color:' + c.segOn + '">' +
-                (rain !== undefined ? rain + '%' : '--') + '</b>' +
+            forecast.innerHTML=
+              '<div class="w-meta" style="color:'+c.label+'">'+
+                'SENSAÇÃO TÉRMICA <b style="color:'+c.segOn+'">'+sens+'°C</b><br>'+
+                'MÁXIMA <b style="color:'+c.segOn+'">'+(max!==undefined?Math.round(max)+'°C':'--')+'</b><br>'+
+                'MÍNIMA <b style="color:'+c.segOn+'">'+(min!==undefined?Math.round(min)+'°C':'--')+'</b><br>'+
+                'CHUVA <b style="color:'+c.segOn+'">'+(rain!==undefined?rain+'%':'--')+'</b>'+
               '</div>';
           }
 
-        } catch (e) {
-          el.innerHTML = '<div class="msg" style="color:' +
-            c.segDim + '">NO DATA_</div>';
+          applyWeatherColors(c);
+        } catch(e) {
+          el.innerHTML='<div class="msg" style="color:'+c.segDim+'">SEM DADOS_</div>';
         }
       } else {
-        el.innerHTML = '<div class="msg" style="color:' +
-          c.segDim + '">NO DATA_</div>';
+        el.innerHTML='<div class="msg" style="color:'+c.segDim+'">SEM DADOS_</div>';
       }
     };
 
     xhr.send();
   }
 
-
-  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-
-  // ── INIT ──────────────────────────────────────────────────
-  var savedTheme = localStorage.getItem('casio-theme')||'green';
+  var savedTheme='green';
+  try { savedTheme=localStorage.getItem('casio-theme')||'green'; } catch(e) {}
   applyTheme(savedTheme);
 
   updateClock();
